@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cat : MonoBehaviour
@@ -64,8 +65,18 @@ public class Cat : MonoBehaviour
         //      collider.
         // You might want to check the Rigidbody2D scripting documentation
         //      for a useful variable :)
-        
 
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
+
+        if(_rigidbody.linearVelocityY > 0)
+        {
+            _collider.enabled = false;
+        }
+        else
+        {
+            _collider.enabled = true;
+        }
         
         // STEP 1 -------------------------------------------------------------
     }

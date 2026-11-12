@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Rat : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Rat : MonoBehaviour
         Color.red,
         Color.blue
     };
-    private int _colorIndex;
+    private int _colorIndex = 3;
 
     // ------------------------------------------------------------------------
     private void OnCollisionEnter2D(Collision2D collision)
@@ -24,6 +25,24 @@ public class Rat : MonoBehaviour
         //      more rats. (The spawning logic is written for you.)
         //
         // Also, shrink the original Rat by _shrinkAmount amount.
+
+        string tag = collision.gameObject.tag;
+        if (tag.Equals("Attack"))
+        {
+            for (int i = 0; i < _spawnAmount; i++)
+            {
+                SpawnSmallRat();
+            }
+
+            Vector3 ratScale = transform.localScale;
+            ratScale *= _shrinkAmount;
+
+            for (int i = 0; i < _colorIndex; i++)
+            {
+                SpawnExplosion(_colors[i]);
+            }
+        }
+
         //
         // STEP 3
         // Additionally, call SpawnExplosion(), and pass in a different color
@@ -60,9 +79,9 @@ public class Rat : MonoBehaviour
         //      rotation correctly.
         // Your game should look exaclty like the finished example.
 
-        //float randomAngle = Random.Range(0, 360);
-        //Vector3 rotationAngles = new Vector3(0, randomAngle, 0);
-        //rat.transform.Rotate(rotationAngles);
+        float randomAngle = Random.Range(0, 361);
+        Vector3 rotationAngles = new Vector3(randomAngle, 0, 0);
+        rat.transform.Rotate(rotationAngles);
 
         // STEP 3 -------------------------------------------------------------
     }
