@@ -80,7 +80,7 @@ public class Rat : MonoBehaviour
         // Your game should look exaclty like the finished example.
 
         float randomAngle = Random.Range(0, 361);
-        Vector3 rotationAngles = new Vector3(randomAngle, 0, 0);
+        Vector3 rotationAngles = new Vector3(0, 0, randomAngle);
         rat.transform.Rotate(rotationAngles);
 
         // STEP 3 -------------------------------------------------------------
